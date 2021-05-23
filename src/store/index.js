@@ -9,7 +9,7 @@ export default new Vuex.Store({
       list: false,
       map: false
     },
-    searchResults: [],
+    // searchResults: [],
     storesSearchInfo: {
       searchResults: [],
       mattresses: ["All", "Emma air", "Emma Original", "Emma Hybrid"],
@@ -291,8 +291,27 @@ export default new Vuex.Store({
       }
     },
     mutations: {
+      setSearchResults(state,searchResults){
+        state.storesSearchInfo.searchResults = searchResults;
+        console.log("setSearchResults: ", state.storesSearchInfo.searchResults.length);
+      },
+      setSectionList(state,showList){
+        state.showSection.list = showList;
+      },
+      setSectionMap(state,showMap){
+        state.showSection.map = showMap;
+      }
     },
     actions: {
+      setSearchResults: ({ commit }, searchResults) => {
+        commit('setSearchResults', searchResults);
+      },
+      setSectionList({ commit },showList){
+        commit('setSectionList', showList);
+      },
+      setSectionMap({ commit },showMap){
+        commit('setSectionMap', showMap);
+      }
     },
     modules: {
     }

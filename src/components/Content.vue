@@ -4,11 +4,11 @@
       <p class="map__list-title">Stores near you</p>
       <hr class="mt-0 mb-4 mx-2" />
       <div v-for="(store, key) of searchResults" :key="key">
-        <store-details :store="store"/>
+        <store-details :store="store" />
       </div>
     </div>
     <!-- The div to hold the map -->
-    <div id="map" class="col" v-if="showSection.map">
+    <div id="map" class="col p-0" v-if="showSection.map">
       <google-map />
     </div>
   </div>
@@ -40,8 +40,7 @@ export default {
       console.log("showSection.list: ", this.showSection.list);
     }
   },
-  methods: {
-  },
+  methods: {},
   components: {
     StoreDetails,
     GoogleMap
@@ -62,6 +61,13 @@ export default {
 @media (min-width: 768px) {
   .map__list-title {
     display: block;
+  }
+  .map__details-list {
+    overflow: scroll;
+    max-height: 25rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(233, 164, 85);
   }
 }
 </style>

@@ -9,8 +9,8 @@
 
 <script>
 import NavBar from "./components/NavigationBar.vue";
-import SearchHeader from "./components/Header.vue";
-import MyMap from "./components/Map.vue";
+import SearchHeader from "./components/Header/Header.vue";
+import MyMap from "./components/Content.vue";
 import MyFooter from "./components/Footer.vue";
 
 export default {
