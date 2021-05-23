@@ -1,19 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav-bar />
+    <search-header />
+    <my-map />
+    <my-footer class="my-footer" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from "./components/NavigationBar.vue";
+import SearchHeader from "./components/Header.vue";
+import MyMap from "./components/Map.vue";
+import MyFooter from "./components/Footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    NavBar,
+    SearchHeader,
+    MyMap,
+    MyFooter
   }
-}
+};
 </script>
 
 <style>
