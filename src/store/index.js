@@ -9,7 +9,7 @@ export default new Vuex.Store({
       list: false,
       map: false
     },
-    // searchResults:[],
+    searchResults: [],
     storesSearchInfo: {
       searchResults: [],
       mattresses: ["All", "Emma air", "Emma Original", "Emma Hybrid"],
@@ -286,6 +286,7 @@ export default new Vuex.Store({
         return state.showSection;
       },
       storesSearchInfo: state => {
+        state.storesSearchInfo.searchResults = state.storesSearchInfo.storeDetails;
         return state.storesSearchInfo;
       }
     },

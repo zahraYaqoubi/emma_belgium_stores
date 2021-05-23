@@ -3,12 +3,12 @@
     <div class="col col-md-3 map__details-list pr-0" v-if="showSection.list">
       <p class="map__list-title">Stores near you</p>
       <hr class="mt-0 mb-4 mx-2" />
-      <div v-for="(store, key) of storesSearchInfo.storeDetails" :key="key">
-        <store-details :store="store" />
+      <div v-for="(store, key) of searchResults" :key="key">
+        <store-details :store="store"/>
       </div>
     </div>
     <!-- The div to hold the map -->
-    <div id="map" class="col col-md-9" v-if="showSection.map">
+    <div id="map" class="col" v-if="showSection.map">
       <google-map />
     </div>
   </div>
@@ -20,15 +20,25 @@ import GoogleMap from "./GoogleMap.vue";
 
 export default {
   data() {
-    return {
-      // map: null,
-      // mapCenter: { lat: 52.632469, lng: -1.689423 }
-    };
+    return {};
   },
   computed: {
-    ...mapGetters(["storesSearchInfo", "showSection"])
+    ...mapGetters(["showSection"]),
+    searchResults() {
+      return this.$store.getters.storesSearchInfo.searchResults;
+    }
   },
-  mounted() {
+  watch: {
+    searchResults(newValue, oldValue) {
+      this.searchResults = newValue;
+      if (screen.width > 768) {
+        this.showSection.list = true;
+      }
+      console.log("old results: ", oldValue.length);
+      console.log("new results: ", newValue.length);
+      console.log("searchResults results: ", this.searchResults.length);
+      console.log("showSection.list: ", this.showSection.list);
+    }
   },
   methods: {
   },

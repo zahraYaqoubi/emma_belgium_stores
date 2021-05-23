@@ -1,9 +1,9 @@
 <template>
-  <div class="store-details">
+  <div class="store-details" @click="showStoreOnMap">
     <div class="store-details__item row px-3 pt-0">
       <img class="col-3 p-0" :src="getImgUrl(store.logo)" alt="Store's Logo" />
       <div class="store-details__vertical-line"></div>
-      <my-modal class="my-auto"/>
+      <my-modal class="my-auto" />
     </div>
     <p class="store-details__item store-details__item_big">{{ store.Address }}</p>
     <div class="store-details__item d-flex align-items-center">
@@ -37,14 +37,30 @@
 </template>
 <script>
 import MyModal from "./Modal.vue";
+import { mapGetters } from "vuex";
 export default {
   props: ["store"],
   components: {
     MyModal
   },
+  computed: {
+    ...mapGetters(["showSection"])
+  },
   methods: {
     getImgUrl(pic) {
       return require("../assets/" + pic);
+    },
+    showStoreOnMap() {
+      if (screen.width < 768) {
+        this.showSection.map = true;
+        this.showSection.list = false;
+      }
+      this.$store.getters.storesSearchInfo.searchResults = [];
+      this.$store.getters.storesSearchInfo.searchResults.push(this.store);
+      console.log(
+        "store clicked => searchResults",
+        this.$store.getters.storesSearchInfo.searchResults.length
+      );
     }
   }
 };
@@ -77,12 +93,4 @@ export default {
   padding-right: 4px;
   margin-left: 4px;
 }
-/* .store-details__Try-Buy{
-    border: none;
-    border-radius: 20px;
-    background-color: rgb(233, 164, 85);
-    font-size: 0.7rem;
-    font-weight: bold;
-    padding: 2px;
-} */
 </style>

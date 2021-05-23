@@ -111,7 +111,6 @@ export default {
 </script>
 <style scoped>
 .navbar {
-  /* height: 100%; */
   width: 100%;
   background-color: rgb(255, 251, 241);
 }
@@ -131,7 +130,6 @@ export default {
   font-size: 0.5rem;
 }
 ::v-deep .bp-dropdown {
-  /* background-color: #fff; */
   background-color: rgb(255, 251, 241);
   margin-top: auto;
   margin-bottom: auto;
@@ -139,10 +137,6 @@ export default {
   font-size: 0.7rem;
   color: rgb(10, 10, 117);
 }
-/* .navbar {
-  padding-bottom: 0px;
-  padding-top: 0px;
-} */
 .nav-item {
   margin-top: auto;
   margin-bottom: auto;
@@ -165,7 +159,8 @@ export default {
 .navbar-collapse {
   background-color: rgb(255, 251, 241);
 }
-.btn:focus, .btn:active {
+.btn:focus,
+.btn:active {
   outline: none !important;
   box-shadow: none !important;
 }

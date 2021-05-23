@@ -9,12 +9,6 @@
           <div class="p-0 pb-3 col-12 col-md-4">
             <p class="search-header__input-label">Your Location</p>
             <div class="search-header__input-div">
-              <!-- <input
-                v-model="storesSearchInfo.selectedFields.location"
-                class="search-header__input col-md-12"
-                type="text"
-                placeholder="Belgium Location"
-              />-->
               <GmapAutocomplete
                 @place_changed="setPlace"
                 class="btn search-header__input col-md-12"
@@ -109,17 +103,16 @@ export default {
         document.getElementById("angleIcon").style.transform = "rotate(360deg)";
         this.searchSectionOpen = false;
       }
-      // this.searchSectionOpen = !this.searchSectionOpen;
     },
     CheckScreenSize() {
       console.log("screen size: ", screen.width);
       if (screen.width < 768) {
-        // this.searchSectionOpen = false;
         this.showSection.list = true;
         this.showSection.map = false;
         console.log("Mobile size ");
         console.log("searchSectionOpen: ", this.searchSectionOpen);
       } else {
+        this.searchSectionOpen = true;
         this.showSection.list = false;
         this.showSection.map = true;
       }
@@ -128,6 +121,8 @@ export default {
     },
     FindSearchResults() {
       this.$emit("FindClicked");
+      if (screen.width < 768) this.searchSectionOpen = false;
+      document.getElementById("angleIcon").style.transform = "rotate(360deg)";
       var results = [];
       for (var i = 0; i < this.storesSearchInfo.storeDetails.length; i++) {
         if (
@@ -152,7 +147,6 @@ export default {
               this.storesSearchInfo.selectedFields.location == ""
             ) {
               if (this.storesSearchInfo.selectedFields.mattress != "All") {
-                //   console.log("mattress type selected ");
                 for (
                   var j = 0;
                   j < this.storesSearchInfo.storeDetails[i].Type.length;
@@ -162,12 +156,10 @@ export default {
                     this.storesSearchInfo.selectedFields.mattress ==
                     this.storesSearchInfo.storeDetails[i].Type[j]
                   ) {
-                    // console.log("result's id: ", i);
                     results.push(this.storesSearchInfo.storeDetails[i]);
                   }
                 }
               } else {
-                // console.log("result's id: ", i);
                 results.push(this.storesSearchInfo.storeDetails[i]);
               }
             }
@@ -200,7 +192,6 @@ export default {
   justify-content: center;
 }
 .search-header__input-group {
-  /* width: 30rem; */
   margin-left: auto;
   margin-right: auto;
   border-radius: 10px;
@@ -210,12 +201,9 @@ export default {
 .search-header__input-div {
   background-color: #fff;
   font-size: 0.7rem;
-  /* border-radius: 10px 0px 0px 10px; */
   border-radius: 5px;
   border: none;
-  /* padding: 0px; */
   padding: 10px;
-  /* width: 100%; */
   display: flex;
   justify-content: space-between;
 }
@@ -244,9 +232,6 @@ export default {
   margin-bottom: auto;
   border-radius: 5px;
   border: none;
-
-  /* border-left: 1px solid #ced4da; */
-  /* border-radius: 0px 10px 10px 0px; */
 }
 
 .search-header__checkbox {
@@ -303,7 +288,6 @@ export default {
 /* Style the checkmark/indicator */
 .search-header__checkbox-item .search-header__checkmark:after {
   left: 5px;
-  /* top: 0px; */
   width: 5px;
   height: 10px;
   border: solid rgb(233, 164, 85);
@@ -325,7 +309,6 @@ export default {
 }
 .search-header__angle-icon {
   color: rgb(233, 164, 85);
-  /* padding-top: 20px; */
   font-size: 30px;
 }
 ::placeholder {

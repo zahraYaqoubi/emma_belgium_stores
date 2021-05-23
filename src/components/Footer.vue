@@ -9,11 +9,7 @@
       <p class="mx-1 my-auto">Show map</p>
     </div>
     <div class="row footer__show-brands">
-      <div
-        class="col-4 my-auto"
-        v-for="(logo, key) of logosList"
-        :key="key"
-      >
+      <div class="col-4 my-auto" v-for="(logo, key) of logosList" :key="key">
         <img class="footer__brands-img" :src="getImgUrl(logo)" alt="Stores' Logos" />
       </div>
     </div>
@@ -31,10 +27,14 @@ export default {
     ...mapGetters(["storesSearchInfo", "showSection"])
   },
   mounted() {
-    for (var i = 0; i < 3 && i < this.storesSearchInfo.storeDetails.length; i++) {
-      this.logosList.push(this.storesSearchInfo.storeDetails[i].logo);
+    for (
+      var i = 0;
+      i < 3 && i < this.storesSearchInfo.searchResults.length;
+      i++
+    ) {
+      this.logosList.push(this.storesSearchInfo.searchResults[i].logo);
     }
-    console.log("length: ",this.storesSearchInfo.storeDetails.length)
+    console.log("length: ", this.storesSearchInfo.searchResults.length);
     console.log("logos: ", JSON.stringify(this.logosList));
   },
   methods: {
@@ -71,9 +71,6 @@ export default {
 .footer__map {
   display: flex;
 }
-.footer__list {
-  /* display: none; */
-}
 .footer__map-icon {
   display: flex;
   color: rgb(233, 164, 85);
@@ -84,9 +81,9 @@ export default {
 .footer__show-brands {
   display: none;
 }
-.footer__brands-img{
-    padding: 0px;
-    height: 1.5rem;
+.footer__brands-img {
+  padding: 0px;
+  height: 1.5rem;
 }
 @media (min-width: 768px) {
   .footer__show-brands {
